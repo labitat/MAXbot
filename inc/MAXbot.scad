@@ -1111,7 +1111,7 @@ module zEndstopMount()
 
 /**************** CONTROL **************************/
 
-module render(n)
+module maxbot_render(n, renderPart)
 {
 	if (n == 1)
 	{
@@ -1226,27 +1226,25 @@ module render(n)
 	}
 }
 
-module maxbot(displayTextOutput=true)
+module maxbot(renderPart)
 {
 	// TEXT OUTPUT
-	if (displayTextOutput) {
-		echo();
-		if (xRodLength <= zLmLength*2+xRodDepth*2)	echo("ATTENTION: xRodLength too small or xRodDepth too large");
-		echo("Mechanical summary:");
-		echo();
-		//echo("Belt outside around pulley diameter:                               ", round((xPulleyRadius*2+xBeltDepth*2)*100)/100);
-		//echo("Caliper measurement belt around idler:                           ", round((xBeltIdlerDiameter+xBeltDepth*2)*100)/100);
-		//echo("Length of X-carriage on X-rods:                                      ", xCarriageLength);
-		//echo("Distance between X-ends (space between axis ends):   ", xRodLength-xRodDepth*2);
-		echo("Maximum movement on X axis (free space on rods):       ", xRodLength-xRodDepth*2-xCarriageLength);
-		echo("Amount of X-rod reserved to X-ends and X-carriage:     ", xRodDepth*2+xCarriageLength);
-		echo("Space between smooth Z-rods:                                       ", (renderPartDistance-(xBody/2+zRodOffset))*2-zRodSmooth);
-		echo("Approx. length of X-axis timing belt (without margin):    ", round(2*(xRodLength-xRodDepth*2+xBody+xMotorDisplaceX)+(xPulleyRadius+bearingDiameter/2)*pi));
-		//echo("X-idler bearing distance from mounting hole surface:     ", round((xBeltHeight-zBody/2-bearingHeight/2)*100)/100);
-		//echo("X-belt height from base pulley cut-out                            ", round(xPulleyBeltHeight*100)/100);
-		echo("Distance between carriage and LM undersides:              ", (xCarriagePlatform-xCarriageZ)+zLmDiameter/2);
-		echo();
-	}
+	echo();
+	if (xRodLength <= zLmLength*2+xRodDepth*2)	echo("ATTENTION: xRodLength too small or xRodDepth too large");
+	echo("Mechanical summary:");
+	echo();
+	//echo("Belt outside around pulley diameter:                               ", round((xPulleyRadius*2+xBeltDepth*2)*100)/100);
+	//echo("Caliper measurement belt around idler:                           ", round((xBeltIdlerDiameter+xBeltDepth*2)*100)/100);
+	//echo("Length of X-carriage on X-rods:                                      ", xCarriageLength);
+	//echo("Distance between X-ends (space between axis ends):   ", xRodLength-xRodDepth*2);
+	echo("Maximum movement on X axis (free space on rods):       ", xRodLength-xRodDepth*2-xCarriageLength);
+	echo("Amount of X-rod reserved to X-ends and X-carriage:     ", xRodDepth*2+xCarriageLength);
+	echo("Space between smooth Z-rods:                                       ", (renderPartDistance-(xBody/2+zRodOffset))*2-zRodSmooth);
+	echo("Approx. length of X-axis timing belt (without margin):    ", round(2*(xRodLength-xRodDepth*2+xBody+xMotorDisplaceX)+(xPulleyRadius+bearingDiameter/2)*pi));
+	//echo("X-idler bearing distance from mounting hole surface:     ", round((xBeltHeight-zBody/2-bearingHeight/2)*100)/100);
+	//echo("X-belt height from base pulley cut-out                            ", round(xPulleyBeltHeight*100)/100);
+	echo("Distance between carriage and LM undersides:              ", (xCarriagePlatform-xCarriageZ)+zLmDiameter/2);
+	echo();
 
 	// MAIN
 	translate([jHeadOffset(), 0, 44.6-xCarriagePlatform])
@@ -1254,15 +1252,15 @@ module maxbot(displayTextOutput=true)
 	{
 
 		for (pn = [1 : 9])
-		render(pn);
+		maxbot_render(pn, renderPart);
 
 		vitamins();
 
 	} else {
 		if (renderPart == -1) vitamins();
 
-		render(renderPart);
+		maxbot_render(renderPart, renderPart);
 	}
 }
 
-maxbot();
+maxbot(renderPart);
