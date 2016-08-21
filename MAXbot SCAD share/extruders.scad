@@ -1,5 +1,5 @@
 use <KISS dualstruder.scad>;
-use <nozzle_cooler.scad>;
+// use <nozzle_cooler.scad>;
 
 jBodyLength				= 40;
 jBodyDiameter			= 16;
