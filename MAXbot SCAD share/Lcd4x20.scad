@@ -44,7 +44,7 @@ module lcdReserved()
 {
 	translate([0, 0, lcdFrameZ+lcdPcbZ+lcdRearZ/2])
 	cube([lcdFrameX, lcdRearY, lcdRearZ+0.01], center=true);
-	
+
 	for (i=[0, 1])
 	{
 		rotate([0, 0, 180]*i)
@@ -83,11 +83,11 @@ module lcdHoles()
 					translate([0, 0, 3+lcdNutH])
 					cylinder(r=lcdHoleDia , h=holesupport, center=false);
 				}
-				
+
 				translate([0, 0, 3])
 				{
 					cylinder(r=lcdNutDia/2, h=lcdNutH, $fn=6);
-					
+
 					rotate([0, 0, 90])
 					rotate([0, 0, 90]*iy)
 					translate([-lcdNutDia/2, 0, 0])
@@ -135,12 +135,12 @@ module lcdPanel()
 		union()
 		{
 			lcdPcb();
-			
+
 			lcdFrame();
 		}
-		
+
 		lcdHoles();
-		
+
 		lcdPins();
 	}
 }
@@ -148,13 +148,13 @@ module lcdPanel()
 
 module lcdHull()
 {
-	lcdPcb();	
-	
+	lcdPcb();
+
 	lcdFrame();
-	
+
 	lcdHoles();
-	
+
 	lcdReserved();
-	
+
 	lcdWindow();
 }

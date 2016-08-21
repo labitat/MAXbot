@@ -28,10 +28,10 @@ module wl() //weightloss
 	{
 		translate([wlInsideOff, wlInside+wlRad/2, 0])
 		cylinder(h=bedZ+1, r=wlRad ,center=true);
-		
+
 		translate([wlSide, wlSide-(wlInsideOff-wlInside), 0])
 		cylinder(h=bedZ+1, r=wlRad ,center=true);
-		
+
 		translate([wlSide, wlInside+wlRad/2, 0])
 		cylinder(h=bedZ+1, r=wlRad ,center=true);
 	}
@@ -41,7 +41,7 @@ module wl2() //weightloss
 {
 	scale([0.9, 1, 1])
 	wl();
-	
+
 	scale([1, 1, 1])
 	mirror([-1, 1, 0])
 	translate([0, 0, 0])
@@ -52,11 +52,11 @@ module wl2() //weightloss
 module mkMountHole()
 {
 	cylinder(r=holesRad, h=bedZ+1, center=true);
-	
+
 	//hexnut
 	translate([0, 0, (-bedZ-hexnutHgt)])
 	#cylinder(r=3.2 ,h=hexnutHgt, center=true, $fn=6);
-	
+
 	//legs
 	#cylinder(r=holesRad, h=bedZ+mkHgt*2, center=true);
 }
@@ -69,22 +69,22 @@ module mk()
 	{
 		translate([-mkMount/2, mkMount/2, 0])
 		mkMountHole();
-		
+
 		translate([0, mkMount/2, 0])
 		mkMountHole();
-		
+
 		translate([mkMount/2, mkMount/2, 0])
 		mkMountHole();
-		
+
 		//heater wire hole
 		translate([0, mkSide/2+hwOffset, 0])
 		cylinder(h=bedZ+1, r=hwRad, center=true);
 	}
-	
+
 	//thermistor wire hole
 	//translate([mkSide/2+hwOffset, 0, 0])
 	cylinder(h=bedZ+1, r=wlRad*2, center=true);
-	
+
 	//plate
 	#translate([0, 0, bedZ/2+mkHgt])
 	cube([mkSide, mkSide, 1], center=true);
@@ -100,14 +100,14 @@ module main()
 		{
 			//main body
 			cube([bedX+turnRad, bedY, bedZ], center=true);
-			
+
 			//corner shapes
 			for (iy=[-bedY/2, bedY/2])
 			{
 				hull()
 				{
 					for (ix=[-bedX/2, bedX/2])
-					{	
+					{
 						translate([ix,iy,0])
 						{
 							cylinder(r=turnRad, h=bedZ, center=true);
@@ -116,11 +116,11 @@ module main()
 				}
 			}
 		}
-		
+
 		//REMOVE:
 		union()
 		{
-			
+
 			//Timeglass shape
 			for (ix=[-1, 1])
 			{
@@ -134,7 +134,7 @@ module main()
 					}
 				}
 			}
-			
+
 			//weightloss-cutouts
 			wl2();
 			mirror([1, 0, 0]) wl2();
@@ -143,22 +143,22 @@ module main()
 				wl2();
 				mirror([1, 0, 0]) wl2();
 			}
-			
+
 			//Corner holes + belt clips
 			for (iy=[-1, 1])
 			{
 				for (ix=[-1, 1])
-				{	
+				{
 					translate([ix*bedX/2, iy*bedY/2, 0])
 					{
 						slot();
 						//cylinder(r=holesRad, h=bedZ+1, center=true);
-						
+
 						translate([-ix*beltOffset, 0, 0])
 						{
 							slot();
 							//cylinder(r=holesRad, h=bedZ+1, center=true);
-							
+
 							translate([-ix*beltMount, 0, 0])
 							slot();
 							//cylinder(r=holesRad, h=bedZ+1, center=true);
@@ -166,7 +166,7 @@ module main()
 					}
 				}
 			}
-			
+
 			//MK2 heatbed
 			mk();
 		}
@@ -182,7 +182,7 @@ module slot()
 
 		translate([slotLength, 0, 0])
 		cylinder(r=holesRad, h=bedZ+1, center=true);
-		
+
 	}
 }
 

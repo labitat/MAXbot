@@ -72,11 +72,11 @@ module jHeadDummy(clearance=0)
 	{
 		//body rim
 		cylinder(h=jBodyCutZOffset+clearance, r=jBodyDiameter/2+clearance, center= false, $fn=jRenderDetails);
-		
+
 		//body neck
 		translate([0, 0, jBodyCutZOffset-1])
 		cylinder(h=jBodyCutZ+2, r=jBodyCutDiameter/2+clearance, center= false, $fn=jRenderDetails);
-		
+
 		//no-go
 		translate([0, 0, jBodyCutZOffset+jBodyCutZ])
 		cylinder(h=10, r=50, center= false);
@@ -100,28 +100,28 @@ module jHead(n, o, p)
 				{
 					//body rim
 					cylinder(h=jBodyCutZOffset, r=jBodyDiameter/2, center= false, $fn=jRenderDetails);
-					
+
 					//body neck
 					translate([0, 0, jBodyCutZOffset-1])
 					cylinder(h=jBodyCutZ+2, r=jBodyCutDiameter/2, center= false, $fn=jRenderDetails);
-					
+
 					//body main part
 					translate([0, 0, jBodyCutZ+jBodyCutZOffset])
 					cylinder(h=jBodyLength-jBodyCutZ-jBodyCutZOffset, r=jBodyDiameter/2+p, center= false, $fn=jRenderDetails);
 				}
-				
+
 				//heater:
 				color("Silver")
 				translate([-jHeaterX/2, -jHeaterY/2+jHeaterYOffset, jBodyLength])
 				cube([jHeaterX, jHeaterY, jHeaterZ]);
 			}
-			
+
 			//filament path
 			if (n == true)
 				translate([0, 0, -1])
 				cylinder(h=jBodyLength+jHeaterZ+jConeExtension+2, r=jFilamentHoleDiameter/2, center=false, $fn=jRenderDetails);
 		}
-		
+
 		difference()
 		{
 			union()
@@ -130,15 +130,15 @@ module jHead(n, o, p)
 				//ConeExtension
 				translate([0, 0, jBodyLength+jHeaterZ])
 				cylinder(h=jConeExtension, r=jConeDiameter/2, center= false, $fn=jRenderDetails);
-				
+
 				translate([0, 0, jBodyLength+jHeaterZ+jConeExtension])
 				cylinder(h=jConeZ, r1=jConeDiameter/2, r2=jTipDiameter/2, center= false, $fn=jRenderDetails);
-				
+
 				//tip:
 				translate([0, 0, jBodyLength+jHeaterZ+jConeExtension+jConeZ])
 				cylinder(h=jTipZ, r=jTipDiameter/2, center= false, $fn=jRenderDetails);
 			}
-			
+
 			//nozzle
 			translate([0, 0, jBodyLength+jConeExtension+jHeaterZ-1])
 			cylinder(h=jConeZ+jTipZ+2, r=jNozzleDiameter/2, center= false, $fn=jRenderDetails);
@@ -238,7 +238,7 @@ module bowdenJAdapter(n, j)
 					translate([0, z*bowdenBaseMountDistance/2, -1-bowdenOffset])
 					cylinder(h=bowdenBaseMountHoleLength+2, r=bowdenBaseMountHoleDiameter/2, center=false, $fn=bowdenRenderDetails);
 
-				//bowden mount body cutout (for small instances of bowdenBaseMountDistance below about 27): 
+				//bowden mount body cutout (for small instances of bowdenBaseMountDistance below about 27):
 				for (z = [-1,1])
 					translate([0, z*bowdenBaseMountDistance/2, -bowdenOffset+bowdenBaseMountHoleLength])
 					rotate([0, 0, 0])
@@ -302,32 +302,32 @@ module kJ(n)
 		{
 			translate([-kissDepth()/1.5, -(kissMountHoleDistance()/2+kissMountHoleDiameter()), 0])
 			cube([kissDepth()*1.5, kissMountHoleDistance()+kissMountHoleDiameter()*2, kJHeight], center=false);
-			
+
 			translate([kissDepth()/2, -kJMotorSupportWidth/2, 0])
 			cube([kJLength, kJMotorSupportWidth, kJHeight], center=false);
 		}
-		
+
 		union()
 		{
 		//%	translate([-kissDepth()/2, 0, kissHeight()/2+kJHeight])
 		//	rotate([0,90,0])
 		//	goKiss();
-		
+
 			translate([0 ,-kissOffset(), kJHeight])
 			rotate([0, 0, 180])
 			jHead(false, 0, 0);
-			
+
 			//mounting plate holes
 			translate([0, kissMountHoleDistance()/2, 0])
-			cylinder(h=kJHeight*3, r=kissMountHoleRadius, center=true, $fn=jRenderDetails);		
-			
+			cylinder(h=kJHeight*3, r=kissMountHoleRadius, center=true, $fn=jRenderDetails);
+
 			translate([0, -kissMountHoleDistance()/2, 0])
-			cylinder(h=kJHeight*3, r=kissMountHoleRadius, center=true, $fn=jRenderDetails);		
-			
+			cylinder(h=kJHeight*3, r=kissMountHoleRadius, center=true, $fn=jRenderDetails);
+
 			//body rim
 			translate([-kissDepth(), -kissOffset()-jBodyDiameter/2,  jBodyCutZOffset-0.5])
 			cube([kissDepth(), jBodyDiameter, jBodyCutZOffset+1], center= false);
-			
+
 			//body neck opening
 			translate([-kissDepth(), -kissOffset()-jBodyCutDiameter/2, -1])
 			cube([kissDepth(), jBodyCutDiameter, jBodyCutZ+2], center= false);
@@ -347,16 +347,16 @@ module kJ(n)
 //		translate([-kissDepth()/2, 0, kissHeight()/2+kJHeight])
 //		rotate([0,90,0])
 //		goKiss();
-		
+
 		translate([0 ,-kissOffset(), kJHeight])
 		rotate([0, 0, 270])
 		jHead(false, 0, 1);
-	
+
 		translate([0, kissMountHoleDistance()/2, 0])
-		cylinder(h=kJHeight*3, r=kissMountHoleRadius, center=true, $fn=jRenderDetails);		
+		cylinder(h=kJHeight*3, r=kissMountHoleRadius, center=true, $fn=jRenderDetails);
 
 		translate([0, -kissMountHoleDistance()/2, 0])
-		cylinder(h=kJHeight*3, r=kissMountHoleRadius, center=true, $fn=jRenderDetails);		
+		cylinder(h=kJHeight*3, r=kissMountHoleRadius, center=true, $fn=jRenderDetails);
 	}
 }
 

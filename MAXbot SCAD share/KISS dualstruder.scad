@@ -39,8 +39,8 @@ filamentDiameter		= 1.75 - filamentDeformation;	// filament diameter
 filamentClearance		= 0.75 + filamentDeformation;	// extra diameter
 kissHeight				= 16;		// KISS box height, also determines length of bearing & motor screws
 
-cylinderSmallDetails	= 30;	
-cylinderLargeDetails	= 60;	
+cylinderSmallDetails	= 30;
+cylinderLargeDetails	= 60;
 
 // 624ZZ Bearing			Overview at http://www.thebigbearingstore.com/servlet/Page?template=600%20radial%20ball%20bearings
 bearingInnerDia			= 4;		// bearing support diameter
@@ -92,8 +92,8 @@ module kiss(filamentDiameter, filamentOffset, bearingOffset)
 {
 	translate(v=[0, 0, kissHeight/2])
 	{
-		
-		
+
+
 		//bearing axis 1
 		difference()
 		{
@@ -102,17 +102,17 @@ module kiss(filamentDiameter, filamentOffset, bearingOffset)
 			{
 				rotate([-5, 0, 0])
 				cylinder(h = kissHeight+2, r1 = (bearingInnerDia-lockFit)/2, r2 = (bearingInnerDia-lockFit)/2+0.5, center = false, $fn=cylinderSmallDetails);
-				
+
 				rotate([5, 0, 0])
 				cylinder(h = kissHeight+2, r1 = (bearingInnerDia-lockFit)/2, r2 = (bearingInnerDia-lockFit)/2+0.5, center = false, $fn=cylinderSmallDetails);
 			}
-			
+
 			//artificial overhang
 			translate(v=[0, bearingOffset, hobbedOffset-(bearingHeight+bearingClearance)/2])
 			rotate([180, 0, 0])
 			cylinder(h = .25, r = 3, center = false);
 		}
-		
+
 		//bearing axis 2
 		difference()
 		{
@@ -121,18 +121,18 @@ module kiss(filamentDiameter, filamentOffset, bearingOffset)
 			{
 				rotate([-5, 0, 0])
 				cylinder(h = kissHeight+2, r1 = (bearingInnerDia-lockFit)/2, r2 = (bearingInnerDia-lockFit)/2+0.5, center = false, $fn=cylinderSmallDetails);
-				
+
 				rotate([5, 0, 0])
 				cylinder(h = kissHeight+2, r1 = (bearingInnerDia-lockFit)/2, r2 = (bearingInnerDia-lockFit)/2+0.5, center = false, $fn=cylinderSmallDetails);
 			}
-			
+
 			//artificial overhang
 			translate(v=[0, -bearingOffset, hobbedOffset-(bearingHeight+bearingClearance)/2])
 			rotate([180, 0, 0])
 			cylinder(h = .25, r = 3, center = false);
 		}
 
-		
+
 		translate([0, 0, hobbedOffset])
 		union()
 		{
@@ -145,7 +145,7 @@ module kiss(filamentDiameter, filamentOffset, bearingOffset)
 			translate(v=[0, filamentOffset, 0])
 			rotate([0, 90, 0])
 			cylinder(h = xMotorWidth*2, r=filamentDiameter/2+filamentClearance/2, center = true, $fn=cylinderSmallDetails);
-			
+
 /*			//filament hole 2
 			translate(v=[0, -filamentOffset, 0])
 			rotate([0, 90, 0])
@@ -154,7 +154,7 @@ module kiss(filamentDiameter, filamentOffset, bearingOffset)
 			translate(v=[0, -filamentOffset, 0])
 			rotate([0, 90, 0])
 			cylinder(h = xMotorWidth*2, r=filamentDiameter/2+filamentClearance/2, center = true, $fn=cylinderSmallDetails);
-			
+
 			//bearing hole 1
 			translate(v=[0, bearingOffset, 0])
 			%cylinder(h = bearingHeight, r = bearingDiameter/2, center = true, $fn = cylinderLargeDetails);
@@ -164,7 +164,7 @@ module kiss(filamentDiameter, filamentOffset, bearingOffset)
 
 			translate(v=[-bearingDiameter/2-bearingClearance, xMotorWidth/2-(xMotorWidth/2-bearingOffset), -bearingHeight/2-bearingClearance/2])
 			cube([(bearingDiameter+bearingClearance*2), xMotorWidth/2-bearingOffset+1, bearingHeight+bearingClearance], center = false);
-			
+
 			//bearing hole 2
 			translate(v=[0, -bearingOffset, 0])
 			%cylinder(h = bearingHeight, r = bearingDiameter/2, center = true, $fn = cylinderLargeDetails);
@@ -188,24 +188,24 @@ module nema()
 	//hobbed pulley effective diameter:
 	translate(v = [0, 0, xMotorCutoutH-1])
 	%cylinder(h = hobbedLength+1, r = hobbedDiameterIn/2, center = false, $fn=cylinderLargeDetails);
-	
+
 	//motor ring:
 	translate(v = [0, 0, xMotorCutoutH])
 	rotate([180,0,0])
 	cylinder(h = xMotorCutoutH+1, r = xMotorCutoutD/2+0.5, center = false, $fn = cylinderLargeDetails);
-	
+
 	//motor mount 1:
 	translate(v = [-xMotorHoleDist/2, xMotorHoleDist/2, -1])
 	cylinder(h = zMount, r = xMotorMount/2, center = false, $fn = cylinderSmallDetails);
-	
+
 	//motor mount 2:
 	translate(v = [xMotorHoleDist/2, xMotorHoleDist/2, -1])
 	cylinder(h = zMount, r = xMotorMount/2, center = false, $fn = cylinderSmallDetails);
-	
+
 	//motor mount 3:
 	translate(v = [-xMotorHoleDist/2, -xMotorHoleDist/2, -1])
 	cylinder(h = zMount, r = xMotorMount/2, center = false, $fn = cylinderSmallDetails);
-	
+
 	//motor mount 4:
 	translate(v = [xMotorHoleDist/2, -xMotorHoleDist/2, -1])
 	cylinder(h = zMount, r = xMotorMount/2, center = false, $fn = cylinderSmallDetails);
@@ -224,12 +224,12 @@ module goKiss()
 			// main body
 			translate(v=[0, 0, kissHeight/2])
 			cube(size = [xMotorWidth, xMotorWidth, kissHeight], center = true);
-			
+
 			// bracket
 			translate([xMotorWidth/2-mountBracketHeight/2, 0, kissHeight/2])
 			cube([mountBracketHeight, mountDistance+mountHoleDiameter*2-1, kissHeight], center=true);
 		}
-		
+
 		translate([xMotorWidth/2-mountBracketHeight, 0, kissHeight/2+hobbedOffset])
 		union()
 		{
@@ -253,11 +253,11 @@ module goKiss()
 			rotate([0, 90, 180])
 			cylinder(h = xMotorWidth/2, r = mounthexHoleDiameter/2, center = false, $fn=6);
 		}
-		
+
 /*		translate([0, 0, kissHeight])
 		rotate([180, 0, 0])
 		nema();
-*/		
+*/
 		nema();
 		for (i = [filamentDiameter, filamentDiameter]) {					//or use: 	for (i = filamentDiameter) or [1.75, 3.00])
 			diameter = i;

@@ -211,27 +211,27 @@ module uSwitch(part)
 		difference()
 		{
 			cube([uSwitchDepth, uSwitchLength,uSwitchThickness], center = false);
-			
+
 			translate([uSwitchHoleAX, uSwitchHoleAY, uSwitchThickness+1])
 			rotate([0, 180, 0])
 			cylinder(h=uSwitchThickness+2, r=uSwitchHoleDia/2, center=false);
-			
+
 			translate([uSwitchHoleBX, uSwitchHoleBY, uSwitchThickness+1])
 			rotate([0, 180, 0])
 			cylinder(h=uSwitchThickness+2, r=uSwitchHoleDia/2, center=false);
 		}
 	}
-	
+
 	if (part != 0)
 	{
 		translate([uSwitchHoleAX, uSwitchHoleAY, uSwitchThickness/2])
 		rotate([0, 180, 0])
 		cylinder(h=uSwitchThickness+uSwitchMountHole+100, r=uSwitchMountHoleDia/2, center=true);
-		
+
 		translate([uSwitchHoleBX, uSwitchHoleBY, uSwitchThickness/2])
 		rotate([0, 180, 0])
 		cylinder(h=uSwitchThickness+uSwitchMountHole+100, r=uSwitchMountHoleDia/2, center=true);
-		
+
 		translate([uSwitchHoleBX, uSwitchHoleBY, -zBody])
 		rotate([90, 0, 0])
 		{
@@ -245,7 +245,7 @@ module uSwitch(part)
 module motor(part)
 {
 	tol = sign(part);
-	
+
 	//X-motor rod:
 	translate([0, 0, -xRodHole/2])
 	if (part == 0){
@@ -253,16 +253,16 @@ module motor(part)
 	}else{
 		cylinder(h = motorRodLength+4, r = motorRod/2+0.5, center = false);
 	}
-	
+
 	//X-motor ring:
 	rotate([180,0,0])
 	cylinder(h = motorCutoutH+1, r = motorCutoutD/2, center = false);
-	
+
 	//X-motor base:
 	translate([-motorWidth/2-tol/2, motorWidth/2+tol/2, -motorCutoutH])
 	rotate([180,0,0])
 	cube(size = [motorWidth+tol, motorWidth+tol, motorHeight], center = false);
-	
+
 	//X-motor mountings
 	for (ix = [-1, 1])
 	for (iy = [-1, 1])
@@ -280,7 +280,7 @@ module pulley(part)
 			//X-motor pulley clearance cutout:
 			if (part == 1)
 			cylinder(h = 9, r = xPulleyCutout, center = false);
-			
+
 			//X-motor pulley:
 			if (part == 0)
 			{
@@ -295,7 +295,7 @@ module pulley(part)
 				cylinder(h = xPulleyBaseHeight, r = xPulleyRadius+2, center = true);
 			}
 		}
-		
+
 		cylinder(h=20, r=motorRod/2);
 	}
 }
@@ -305,7 +305,7 @@ module xBearingIdler(part)
 {
 	translate([0, yBody/2+xMotorDisplaceY+(xBeltIdlerDiameter/2-xPulleyRadius)+xBeltToothDepth, zBody/3])
 	cylinder(h = 3*zBody+2, r = xBeltIdlerRodHole/2, center = true);
-	
+
 	if (part == 0 || part == 3) //or
 	{
 		translate([0, yBody/2+xMotorDisplaceY+(xBeltIdlerDiameter/2-xPulleyRadius)+xBeltToothDepth, xBeltHeight])
@@ -320,10 +320,10 @@ module xLM()
 	for (iy = [-1, 1])
 	translate([ix*xCarriageLength/2-ix*xLmLength/2-ix*xCarriageLmEnd, iy*xRodDist/2, 0])
 	rotate([0, 90, 0])
-	
+
 	difference(){
 		cylinder(h=xLmLength, r=xLmDiameter/2, center=true);
-		
+
 		cylinder(h=xLmLength+1, r=xRodHole/2, center=true);
 	}
 }
@@ -336,7 +336,7 @@ module zLM(part)
 	translate([0, 0, i*zLmLength/2])
 	difference(){
 		cylinder(h=zLmLength, r=zLmDiameter/2, center=true);
-		
+
 		cylinder(h=zLmLength+1, r=zRodSmooth/2, center=true);
 	}
 	else
@@ -354,12 +354,12 @@ module airDeflector()
 		difference()
 		{
 			cube([coolerLength, coolerWall, coolerHeight]);
-			
+
 			translate([coolerLength, -1, 0])
 			rotate([0, -coolerAngle, 0])
 			cube([coolerHeight, coolerWall+2, coolerHeight*(1+tan(coolerAngle))]);
 		}
-		
+
 		//rounded edge
 		translate([coolerLength, coolerRadius+coolerWall, 0])
 		difference()
@@ -370,21 +370,21 @@ module airDeflector()
 				difference()
 				{
 					cylinder(r=coolerRadius+coolerWall, h=2*coolerTan, center=true);
-					
+
 					cylinder(r=coolerRadius, h=2*coolerTan+1, center=true);
 				}
-				
+
 				translate([0, -coolerRadius*2, -coolerTan/2-1])
 				cube([coolerRadius*2, coolerRadius*2, coolerTan]);
 			}
-			
+
 			translate([-coolerLength-coolerTan, -(coolerRadius+coolerWall+1), coolerHeight])
 			cube([coolerLength*2+coolerTan*2, 2*(coolerRadius+coolerWall+1), 2*coolerHeight]);
-			
+
 			translate([coolerTan, -(coolerRadius+coolerWall+1), 0])
 			rotate([0, 180, 0])
 			cube([coolerTan, 2*(coolerRadius+coolerWall), coolerHeight*2]);
-			
+
 		}
 	}
 }
@@ -405,70 +405,70 @@ module vitamins()		// x/y/z-rods, belt, Z-motors etc.
 			translate([0, i*xRodDist/2, 0])
 			rotate ([0,90,0])
 			cylinder(h = xRodLength, r=xRodHole/2, center = true);
-			
+
 			// outer threaded Z-rods
 			translate([-i*(xBody/2+zRodOffset)+i*zRodDist+i*renderPartDistance, 0, motorHeight+motorRodLength+zRodThreadedLen/2-zPos])
 			cylinder(h = zRodThreadedLen, r=zRodThreadedDia/2, center = true);
-			
+
 			// inner smooth Z-rods
 			translate([-i*(xBody/2+zRodOffset)+i*renderPartDistance, 0, zRodSmoothLen/2-zPos])
 			cylinder(h = zRodSmoothLen, r=zRodSmooth/2, center = true);
-			
+
 			//Z-Couplers
 			translate([-i*(zRodDist+renderPartDistance-(xBody/2+zRodOffset)), 0, motorHeight+motorRodLength-zPos])
 			cylinder(h=25, r=20/2, center=true);
-			
+
 			//Z-motors
 			translate([-i*(zRodDist+renderPartDistance-(xBody/2+zRodOffset)), 0, motorHeight-zPos])
 			motor(0);
-			
+
 			// Z-rod LM's
 			translate([i*(renderPartDistance-(xBody/2+zRodOffset)), 0, zLmOffset])
 			zLM(0);
 		}
-		
+
 		// X-endstop microswitch
 		translate([-renderPartDistance+xBody/2-uSwitchPlateOffset, -uSwitchOffsetY, zBody/2])
 		rotate([0, 0, 180])
 		uSwitch(0);
-		
+
 		// Z-endstop microswitch
 		translate([-(zRodDist+renderPartDistance-(xBody/2+zRodOffset))+uSwitchLength/2+zEndstopPosX, -uSwitchThickness-motorWidth/2, uSwitchDepth+zEndstopPosZ+motorHeight-motorCutoutH-zPos])
 		rotate([270, 90, 0])
 		uSwitch(0);
-		
+
 		//X-motor
 		translate([-renderPartDistance-xMotorDisplaceX, -(-yBody/2-xMotorDisplaceY), -xRodHole/2-xMotorDisplaceZ])
 		motor(0);
-		
+
 		//X-Pulley
 		translate([-renderPartDistance-xMotorDisplaceX, -(-yBody/2-xMotorDisplaceY), xRodHole/2+xPulleyDisplaceZ])
 		pulley(0);
-		
+
 		//Belt idler bearing and rod
 		translate([renderPartDistance, 0, 0])
 		xBearingIdler(0);
-		
+
 		//X-rod LM's
 		xLM();
-		
+
 		//Hotend:
 		translate([0, 0, xCarriagePlatform-xCarExtGroove])
 		rotate([0, 0, 270])
 		jHeadShow(false, 0, 0);
 	}
-	
+
 	//Threaded z-rod brass hex nut:
 	color("DarkOrange")
 	for (i = [-1, 1])
 	translate([i*(renderPartDistance+zRodDist-(xBody/2+zRodOffset)), 0, -zBody/2+zNutHeight/2])
 	cylinder(h = zNutHeight, r=zNutHole/2, center = true, $fn=6);
-		
+
 	//x-belt
 	color("GhostWhite")
 	translate([-xRodLength/2+xRodDepth-xBody/2-xMotorDisplaceX, yBody/2+xMotorDisplaceY-xPulleyRadius-xBeltDepth, xBeltHeight-xBeltSide/2])
 	cube([xRodLength-xRodDepth*2+xBody+xMotorDisplaceX, xBeltToothSize/2+xBeltDepth, xBeltSide], center = false);
-	
+
 	//Braided sleeve
 	color("DimGray")
 	translate([-xCarriageLength/2+3+1, yBody/2+xMotorDisplaceY-motorMountDist/2-guideWidth/2, xCarriageLift+xLmWall+xLmDiameter/2+xCarriageZ/2])
@@ -477,13 +477,13 @@ module vitamins()		// x/y/z-rods, belt, Z-motors etc.
 		//	cylinder(h=xRodLength/2, r=4);
 		translate([0, -4, -4])
 		cube([xRodLength/2, 8, 8]);
-		
+
 		translate([-xRodLength/2, 0, -zPos/2])
 		rotate([90, 0, 0])
 		difference()
 		{
 			cylinder(h=2*4, r=zPos/2+4, center=true);
-			
+
 			cylinder(h=2*4+1, r=zPos/2-4, center=true);
 			translate([zPos/2, 0, 0])
 			cube([zPos, 2*zPos, 10], center=true);
@@ -501,36 +501,36 @@ module xBarEnds(part)
 		{
 			//Body:
 			cube(size = [xBody, yBody-xRodHole*2, zBody], center = true);
-			
+
 			if (part == 1)
 			{
 				// motor support
 				translate([xMotorDisplaceX+motorMountDist/2, -yBody/2-xMotorDisplaceY+motorMountDist/2, 0])
 				cylinder(h=zBody, r=motorMount/2+motorMountWall, center=true);
-				
+
 				translate([xBody/2+((xMotorDisplaceX+motorMountDist/2)-xBody/2)/2, -yBody/2-xMotorDisplaceY+motorMountDist/2, 0])
 				cube([(xMotorDisplaceX+motorMountDist/2)-xBody/2, motorMount+motorMountWall*2, zBody], center=true);
-				
+
 				translate([xBody/2+(zRodDist-(xBody/2+zRodOffset)-xBody/2)/2, ((-yBody/2-xMotorDisplaceY+motorMountDist/2-motorMount/2+motorMountWall/2)-(zNutHole/2))/2, 0]) //skal rettes!
 				cube([zRodDist-(xBody/2+zRodOffset)-xBody/2, (-zNutHole/2-zNutWall)-(-yBody/2-xMotorDisplaceY+motorMountDist/2+motorMount/2+motorMountWall)+1, zBody], center=true);
-				
+
 			}
-			
+
 			if (part == 3)
 			{
 				//X-belt mount:
 				translate([0, yBody/2+xMotorDisplaceY+(xBeltIdlerDiameter/2-xPulleyRadius)+xBeltToothDepth, 0])
 				cylinder(h = zBody, r = xBeltIdlerRodHole/2+xBeltIdlerRodWall, center = true);
-				
+
 				//X-belt mount support:
 				translate([-xBeltIdlerRodHole/2-xBeltIdlerRodWall, yBody/2, -zBody/2])
 				cube(size = [xBeltIdlerRodHole+xBeltIdlerRodWall*2, xMotorDisplaceY+(xBeltIdlerDiameter/2-xPulleyRadius)+xBeltToothDepth, zBody], center = false);
 			}
-			
+
 			//LM z-rod mount tube:
 			translate([-(xBody/2+zRodOffset), 0, zLmOffset])
 			cylinder(h = zLmLength*2, r=zLmDiameter/2+zLmWall, center = true);
-			
+
 			//LM z-rod mount tube support:
 			translate([-xBody/2, 0, 1-zBody/2])
 			rotate([270, 0, 270])
@@ -539,117 +539,117 @@ module xBarEnds(part)
 				points=	[	[-zLmDiameter/2-zLmWall-zLmSupportY, 0],
 							[-zLmDiameter/2-zLmWall, zLmLength+zBody/2+1],
 							[zLmDiameter/2+zLmWall, zLmLength+zBody/2+1],
-							[zLmDiameter/2+zLmWall+zLmSupportY, 0]	
+							[zLmDiameter/2+zLmWall+zLmSupportY, 0]
 						],
 				paths=	[	[0,1,2,3]
 						]
 			);
-			
+
 			//Threaded z-rod mount:
 			translate([zRodDist-(xBody/2+zRodOffset), 0, 0])
 			cylinder(h = zBody, r=zNutHole/2+zNutWall, center = true);
-			
+
 			translate([xBody/2+(zRodDist-(xBody/2+zRodOffset)-xBody/2)/2, 0, 0])
 			cube([zRodDist-(xBody/2+zRodOffset)-xBody/2, zNutHole+zNutWall*2,zBody], center=true);
-			
+
 			//X-rod ends:
 			if ((!xRodEnds) && (part==3)) {} else
 			{
 				//X-rod end 1:
 				translate([xBody/2, -xRodDist/2, 0])
 				cylinder(h=zBody, r=xRodHole, center=true);
-				
+
 				//X-rod end 2:
 				translate([xBody/2, +xRodDist/2, 0])
 				cylinder(h=zBody, r=xRodHole, center=true);
 			}
-			
+
 			//X-rod mount 1:
 			translate([0, -xRodDist/2, 0])
 			cube([xBody, xRodHole*2, zBody], center = true);
-			
+
 			//X-rod mount 2:
 			translate([0, xRodDist/2, 0])
 			cube([xBody, xRodHole*2, zBody], center = true);
 		}
-		
+
 		union()
 		{
 			if (part == 1)
 			{
 				translate([xMotorDisplaceX, -yBody/2-xMotorDisplaceY, -xRodHole/2-xMotorDisplaceZ])
 				motor(part);
-				
+
 				translate([xMotorDisplaceX, -yBody/2-xMotorDisplaceY, xRodHole/2+xPulleyDisplaceZ])
 				pulley(part);
-				
+
 				// X-endstop uSwitch mounting holes:
 				translate([-xBody/2+uSwitchPlateOffset, uSwitchOffsetY, zBody/2])
 				uSwitch(part);
-				
+
 				// Z-endstop rod hole:
 				translate([zRodDist-xBody/2-zRodOffset-uSwitchLength/6-zEndstopPosX, uSwitchThickness/2+motorWidth/2, 0])
 				union(){
 					//hole for M3 screw with retention spring
 					cylinder(h=40, r=1.6, center=true);
-					
+
 					//hex nut
 					translate([0, 0, -zBody/2-1])
 					cylinder(h=4, r=3.1, $fn=6);
 				}
 			}
-			
+
 			if (part == 3)
 			{
 				// X-bearing hole:
 				xBearingIdler(part);
 			}
-			
+
 			//LM z-rod hole:
 			translate([-(xBody/2+zRodOffset), 0, zLmOffset])
 			zLM(part);
-			
+
 			//z-rod round snap-fit:
 			translate([-xBody/2-zRodOffset-zLmSnap-(2*zLmDiameter)/zLmSnap, 0, zLmOffset])
 			cylinder(h = zLmLength*2+1, r=zLmSnap, center = true);
-			
+
 			//snap-fit corner-cut top
 			translate([-xBody/2-zRodOffset-zLmSnap-(2*zLmDiameter)/zLmSnap, 0, zBody/2])
 			rotate ([0, zLmSfccAngle, 0])
 			cube([zLmSfccDepth, 2*zLmSupportX, 2*zLmLength], center=true);
-			
+
 			//snap-fit corner-cut bottom
 			translate([-xBody/2-zRodOffset-zLmSnap-(2*zLmDiameter)/zLmSnap, 0, zBody/2-2*zLmLength])
 			rotate ([0, 180-zLmSfccAngle, 0])
 			cube([zLmSfccDepth, 2*zLmSupportX, 2*zLmLength], center=true);
-			
+
 			//Threaded z-rod hole:
 			rotate ([0,0,90])
 			translate([0, (xBody/2+zRodOffset)-zRodDist, 0])
 			cylinder(h = zBody+1, r=zRodHole/2, center = true);
-			
+
 			//Threaded z-rod brass hex nut hole:
 			translate([zRodDist-(xBody/2+zRodOffset), 0, -zBody/2+zNutHeight/2])
 			cylinder(h = zNutHeight+1, r=zNutHole/2, center = true, $fn=6);
-			
+
 			//X-rod hole 1 + finish:
 			rotate ([0,90,0])
 			translate([0, -xRodDist/2, -xBody/2+xRodDepth/2-1])
 			cylinder(h = xRodDepth+2, r=xRodHole/2, center = true);
-			
+
 			rotate ([0,90,0])
 			translate([0, -xRodDist/2, -xBody/2+xRodDepth-0.001])
 			cylinder(h = xRodHole/4, r1=xRodHole/2, r2=0, center = false);
-			
+
 			//X-rod hole 2 + finish:
 			rotate ([0,90,0])
 			translate([0, xRodDist/2, -xBody/2+xRodDepth/2-1])
 			cylinder(h = xRodDepth+2, r=xRodHole/2, center = true);
-			
+
 			rotate ([0,90,0])
 			translate([0, xRodDist/2, -xBody/2+xRodDepth-0.001])
 			cylinder(h = xRodHole/4, r1=xRodHole/2, r2=0, center = false);
-			
+
 			// X-rod fixation slots
 			if (xRodFixation)
 			{
@@ -686,7 +686,7 @@ module xCarriage()
 				//Base:
 				translate([0, 0, xCarriageLift+xLmWall+xLmDiameter/2+xCarriageZ/2])
 				cube(size = [xCarriageLength, xRodDist+xCarriageDefaultZ ,xCarriageZ], center = true);
-				
+
 				//Hotend cut-out:
 				if (extruderSelect == 0)
 				{
@@ -694,25 +694,25 @@ module xCarriage()
 					rotate([0, 0, 270])
 					kJ(false);
 				}
-				
+
 				if (extruderSelect == 1)
 				{
 					translate([0, 0, xCarriagePlatform+5])
 					rotate([0, 0, -90])
 					bowden_hotend_main(mockup_clr=0.5);
-					
+
 /*				%	translate([0, 0, xCarriagePlatform+5])
 					rotate([0, 0, -90])
 					bowden_hotend_main();
 */				}
-				
+
 				if (extruderSelect == 2)
 				{
 					translate([0, 0, xCarriagePlatform])
 					rotate([0, 0, -90])
 					bowden_hotend_dual(mockup_clr=0.5, nutOffset=-xCarriageZ);
 				}
-				
+
 /*				if (extruderSelect == 3)
 				{
 					translate([0, 0, xCarriagePlatform])
@@ -720,47 +720,47 @@ module xCarriage()
 					bowden_hotend_triple(mockup_clr=0.5, nutOffset=-xCarriageZ);
 				} */
 			}
-			
+
 			//Base support 1:
 			translate([0, -xRodDist/2, xCarriageLift/2+xLmWall+xLmDiameter/2])
 			cube(size = [xCarriageLength, xCarriageDefaultZ ,xCarriageLift+1], center = true);
-			
+
 			//Base support 2:
 			translate([0, xRodDist/2, xCarriageLift/2+xLmWall+xLmDiameter/2])
 			cube(size = [xCarriageLength, xCarriageDefaultZ ,xCarriageLift+1], center = true);
-			
+
 			//X-rod mount 1:
 			rotate ([0,90,0])
 			translate([0, -xRodDist/2, 0])
 			cylinder(h = xCarriageLength, r=xLmDiameter/2+xLmWall, center = true);
-			
+
 			//X-rod mount 2:
 			rotate ([0,90,0])
 			translate([0, +xRodDist/2, 0])
 			cylinder(h = xCarriageLength, r=xLmDiameter/2+xLmWall, center = true);
-			
+
 			//X-belt mounting plate
 			translate([0, xCarriageMountY, -0.01])
 			beltMount(0);
-			
+
 			//uSwitch touch plate:
 			hull()
 			{
 				translate([-xCarriageLength/2-uSwitchPlateOffset, -uSwitchOffsetY-(uSwitchLength-5), zBody/2+1])
 				cube([1, uSwitchLength-10, uSwitchThickness], center=false);
-				
+
 				translate([-xCarriageLength/2, -uSwitchOffsetY-(uSwitchLength-5), xCarriageLift+xLmWall+xLmDiameter/2])
 				cube([xCarriageLength/2-xCarriageUseLength/2, uSwitchLength-10, xCarriageZ], center=false);
 			}
 		}
-		
+
 		//Belt mount
 		union()
 		{
 			//Plate holes
 			translate([0, xCarriageMountY, 0])
 			beltMountHoles(1);
-			
+
 			//hexnut cut-out:
 			for (i=[-1,1])
 			{
@@ -769,39 +769,39 @@ module xCarriage()
 				cylinder (h =xCarriageBeltMount , r=xCarriageBeltMount, center = true, $fn=6);
 			}
 
-			
+
 			/*union()
 			{
 				//Hole 1 hexnut cut-out:
 				translate([0, xCarriageMountY-xBeltWall*2/3-xCarriageBeltMount/2, xBeltHeight+xBeltMountZdisplace/2])
 				rotate ([90,0,0])
 				cylinder (h =xCarriageBeltMount , r=xCarriageBeltMount, center = true, $fn=6);
-				
+
 				//Hole 2 hexnut cut-out:
 				translate([0, xCarriageMountY-xBeltWall*2/3-xCarriageBeltMount/2, xBeltHeight-xBeltMountZdisplace/2])
 				rotate ([90,0,0])
 				cylinder (h =xCarriageBeltMount , r=xCarriageBeltMount, center = true, $fn=6);
-				
+
 				//Hole 2 hexnut cut-out access space:
 				translate([0, xCarriageMountY-xBeltWall*2/3-xCarriageBeltMount/2, xBeltHeight])
 				#cube([xCarriageBeltMount*2,xCarriageBeltMount,xBeltMountZdisplace], center = true);
 			}
 			*/
 		}
-		
+
 		//X-rod 1:
 		rotate ([0,90,0])
 		translate([0, -xRodDist/2, 0])
 		cylinder(h = xCarriageLength+1, r=xLmDiameter/2-.5, center = true);
-		
+
 		//X-rod 2:
 		rotate ([0,90,0])
 		translate([0, xRodDist/2, 0])
 		cylinder(h = xCarriageLength+1, r=xLmDiameter/2-.5, center = true);
-		
+
 		//X-rod LM's
 		xLM();
-		
+
 		//Z-rod Base cut-out 1:
 		translate([-xCarriageLength/2, 0, xCarriageLift+xLmWall+xLmDiameter/2+xCarriageZ/2])
 		cylinder(h = xCarriageZ+1, r=zRodSmooth/2+1, center = true);
@@ -816,23 +816,23 @@ module xCarriage()
 		{
 			translate([1, 0, 0])
 			cylinder(h = xCarriageZ+1, r=3, center = true);
-			
+
 			for (i=[-1,1])
 				translate([3, i*6, 0])
 				cylinder(h = xCarriageZ+1, r=1.5, center = true, $fn=10);
-			
+
 		}
-		
+
 		//X-rod 1 round snap-fit:
 		translate([0, -xRodDist/2, -xLmSnap])
 		rotate([0, 90, 0])
 		cylinder(h = xCarriageLength+1, r=xLmSnap, center = true);
-		
+
 		//X-rod 2 round snap-fit:
 		translate([0, xRodDist/2, -xLmSnap])
 		rotate([0, 90, 0])
 		cylinder(h = xCarriageLength+1, r=xLmSnap, center = true);
-		
+
 /*		//fan mount
 		translate([8, 0, xCarriagePlatform-xCarriageZ-0.1])
 		rotate([180, 90, 0])
@@ -861,16 +861,16 @@ module beltMount(n)		//use:	 n=0 for xCarriage		n=1 for Clamp
 		{
 			rotate([90, 0, 0])
 			linear_extrude(height = xBeltWall, center = false)
-			polygon(	
+			polygon(
 				points=	[	[(1-n)*(-xCarriageLength/2)+n*-xCarriageBeltMount*3, xCarriagePlatform-(n)*(xCarriageZ+xCarriageLift)],
 							[(1-n)*-xCarriageBeltMount*3+n*-xCarriageBeltMount*3, xBeltHeight+xBeltMountZdisplace/2+xCarriageBeltMount*1.5],
 							[(1-n)*xCarriageBeltMount*3+n*xCarriageBeltMount*3, xBeltHeight+xBeltMountZdisplace/2+xCarriageBeltMount*1.5],
-							[(1-n)*(xCarriageLength/2)+n*xCarriageBeltMount*3, xCarriagePlatform-(n)*(xCarriageZ+xCarriageLift)]	
+							[(1-n)*(xCarriageLength/2)+n*xCarriageBeltMount*3, xCarriagePlatform-(n)*(xCarriageZ+xCarriageLift)]
 						],
 				paths=	[	[0,1,2,3]
 						]
 			);
-			
+
 			if ((n == 1) && coolerAddon)
 			{
 				//cooler mounting
@@ -880,60 +880,60 @@ module beltMount(n)		//use:	 n=0 for xCarriage		n=1 for Clamp
 					{
 						//translate([-3*xCarriageBeltMount, -1.5, xCarriagePlatform-(xCarriageZ+xCarriageLift)])
 						//cube([6*xCarriageBeltMount, 9, 5]);
-						
+
 						//Primary triangular support
 						translate([-1, -1.5, xCarriagePlatform-(xCarriageZ+xCarriageLift)])
 						difference()
 						{
 							cube([2, 10, 14]);
-							
+
 							translate([-10, 0, 14])
 							rotate([-45, 0, 0])
 							cube([20, 20, 20]);
 						}
-						
+
 						//Secondary triangular support
 						translate([-9, -2, xCarriagePlatform-(xCarriageZ+xCarriageLift)])
 						rotate([0, 0, 56])
 						difference()
 						{
 							cube([2, 10, 14]);
-							
+
 							translate([-10, 0, 14])
 							rotate([-45, 0, 0])
 							cube([20, 20, 20]);
 						}
-						
+
 						//cooler mount base plate
 						translate([-J_X()-coolerMountDist, coolerMountOffset-(xCarriageMountY+xBeltWall)-10, xCarriagePlatform-(xCarriageZ+xCarriageLift)])
 						hull()
 						{
 							translate([-3, 46-coolerMountOffset, 0])
 							cube([coolerMountDist*2+6, coolerMountOffset-36, 5]);
-							
+
 							translate([0, 10, 0])
 							cylinder(h=5, r=3);
-							
+
 							translate([coolerMountDist*2, 10, 0])
 							cylinder(h=5, r=3);
 						}
 					}
-					
+
 					//cooler mounting holes
 					translate([-J_X(), coolerMountOffset-(xCarriageMountY+xBeltWall)-4.5, xCarriagePlatform-(xCarriageZ+xCarriageLift)])
 					{
 						translate([-coolerMountDist, 4.5, -1])
 						cylinder(h=5+2, r=1.5);
-						
+
 						translate([coolerMountDist, 4.5, -1])
 						cylinder(h=5+2, r=1.5);
 					}
 				}
 			}
 		}
-		
+
 		beltMountHoles(n);
-		
+
 		//Clamp timing belt teeth
 		if (n == 1)
 		{
@@ -941,7 +941,7 @@ module beltMount(n)		//use:	 n=0 for xCarriage		n=1 for Clamp
 			for (i = [-ceil(7*xCarriageBeltMount/xBeltToothSize)*xBeltToothSize-xBeltToothSize : xBeltToothSize : 10*xBeltToothSize])
 				translate([i, xBeltHeight, xBeltWall-xBeltToothDepth])
 				cube([xBeltToothSize/2+0.2, xBeltSide+1, xBeltToothDepth*2], center=true);
-			
+
 			translate([0, -xBeltWall, xBeltHeight])
 			cube([50*xCarriageBeltMount, xBeltToothDepth*2, xBeltSide+1], center=true);
 		}
@@ -977,7 +977,7 @@ module fanMount()
 	//%xCarriage();
 	//%translate([0, 0, xCarriagePlatform]) rotate([0, 0, 270]) kJ(false);
 	//%translate([0, xCarriageMountY+xBeltWall, 0]) beltMount(1);
-	
+
 	//rotate([0, 0, 180])
 	difference()
 	{
@@ -991,32 +991,32 @@ module fanMount()
 					translate([-coolerWidth-jHeadOffset(), xRodDist/2, -(jBodyCut2TipZ()-xCarriagePlatform)+fanPosZ])
 					cube([2*coolerWidth, fanPosY-xRodDist/2, (jBodyCut2TipZ()-xCarriagePlatform)-fanPosZ+xCarriagePlatform-(xCarriageZ+xCarriageLift)]);
 				}
-				
+
 				//X-rod cutout
 				translate([coolerWidth-jHeadOffset()+1, xRodDist/2, 0])
 				rotate([0, -90, 0])
 				cylinder(r=(xLmDiameter/2+xLmWall), h=2*coolerWidth+2);
-				
+
 				//overhang limiter
 				translate([coolerWidth-jHeadOffset()+1, xRodDist/2, 0])
 				rotate([60, 0, 180])
 				cube([2*coolerWidth+2, (xLmDiameter/2+xLmWall), (xLmDiameter/2+xLmWall)]);
-				
+
 				//upper cut around hotend
 				translate([-coolerWidth-jHeadOffset()-1, -tipClearance-1, -(xLmDiameter/2+xLmWall)])
 				cube([2*coolerWidth+2, xRodDist/2+tipClearance+1, 2*(xLmDiameter/2+xLmWall)+1]);
-				
+
 				//channel hollow-out
 				translate([coolerWall-coolerWidth-jHeadOffset(), coolerWall, -(jBodyCut2TipZ()-xCarriagePlatform)+fanPosZ+coolerWall])
 				cube([2*coolerWidth-2*coolerWall, fanPosY-12.9, -(-(jBodyCut2TipZ()-xCarriagePlatform)+fanPosZ+coolerWall)-(xLmDiameter/2+xLmWall)-coolerWall]);
-				
+
 				/*
 				//hotend cutout
 				translate([-jHeadOffset(), tipClearance/2, -(jBodyCut2TipZ()-xCarriagePlatform)+fanPosZ-1])
 				rotate([0, 0, 90])
-				cylinder(r=tipClearance*1.2, h=coolerHeight+2, center=false,$fn=6);	
+				cylinder(r=tipClearance*1.2, h=coolerHeight+2, center=false,$fn=6);
 				*/
-				
+
 				/*
 				//lower edge output cut
 				intersection()
@@ -1025,14 +1025,14 @@ module fanMount()
 					translate([-jHeadOffset(), tipClearance/2, -(jBodyCut2TipZ()-xCarriagePlatform)+fanPosZ-0.5])
 					rotate([0, 0, 90])
 					cylinder(r1=tipClearance*1.2, r2=tipClearance*1.2+1.5*coolerWall, h=coolerWall+1, center=false, $fn=6);
-					
+
 					//channel hollow-out (adjusted)
 					translate([-coolerWidth-jHeadOffset()+coolerWall, coolerWall, -(jBodyCut2TipZ()-xCarriagePlatform)+fanPosZ])
 					cube([2*coolerWidth-2*coolerWall, 2*tipClearance, -(-(jBodyCut2TipZ()-xCarriagePlatform)+fanPosZ+coolerWall)-(xLmDiameter/2+xLmWall)-coolerWall]);
 				}
 				*/
 			}
-			
+
 			/*
 			difference()
 			{
@@ -1042,20 +1042,20 @@ module fanMount()
 					//hotend cutout (adjusted)
 					translate([-jHeadOffset(), tipClearance/2, -(jBodyCut2TipZ()-xCarriagePlatform)+fanPosZ])
 					rotate([0, 0, 90])
-					cylinder(r1=tipClearance*1.2, r2=tipClearance*1.2+1.5*coolerWall, h=coolerWall, center=false,$fn=6);	
-					
+					cylinder(r1=tipClearance*1.2, r2=tipClearance*1.2+1.5*coolerWall, h=coolerWall, center=false,$fn=6);
+
 					//channel hollow-out (adjusted)
 					translate([-coolerWidth-jHeadOffset()+coolerWall, coolerWall, -(jBodyCut2TipZ()-xCarriagePlatform)+fanPosZ-1])
 					cube([2*coolerWidth-2*coolerWall, 2*tipClearance, -(-(jBodyCut2TipZ()-xCarriagePlatform)+fanPosZ+coolerWall)-(xLmDiameter/2+xLmWall)-coolerWall]);
 				}
-				
+
 				//hotend cutout
 				translate([-jHeadOffset(), tipClearance/2, -(jBodyCut2TipZ()-xCarriagePlatform)+fanPosZ-1])
 				rotate([0, 0, 90])
 				cylinder(r=tipClearance*1.2, h=coolerHeight+2, center=false,$fn=6);
 			}
 			*/
-			
+
 			/*
 			//nozzle supports
 			translate([-jHeadOffset(), tipClearance/2, -(jBodyCut2TipZ()-xCarriagePlatform)+fanPosZ])
@@ -1063,8 +1063,8 @@ module fanMount()
 			rotate([0, 0, -i])
 			translate([tipClearance+coolerWall, -coolerWall, 0])
 			cube([coolerWall*2, coolerWall*2, -(-(jBodyCut2TipZ()-xCarriagePlatform)+fanPosZ)-(xLmDiameter/2+xLmWall)]);
-			
-			
+
+
 			//nozzle wall
 			translate([-jHeadOffset(), tipClearance/2, -(jBodyCut2TipZ()-xCarriagePlatform)+fanPosZ])
 			for (i = [-60, -120])
@@ -1072,9 +1072,9 @@ module fanMount()
 			translate([tipClearance, 0, coolerHeight/2])
 			cube([coolerWall, tipClearance+coolerWall, coolerHeight], center=true);
 			*/
-			
+
 			//fanFunnel();
-			
+
 			hull()
 			{
 				//fan mounting plate
@@ -1082,13 +1082,13 @@ module fanMount()
 				rotate([-45, 0, 0])
 				translate([-20, -20, 0])
 				cube([40, 40, 2]);
-				
+
 				//cooler block plate
 				translate([-coolerWidth-jHeadOffset(), fanPosY-5, -(jBodyCut2TipZ()-xCarriagePlatform)+fanPosZ])
 				cube([2*coolerWidth, 1, fanDiagonal-5]);
 			}
 		}
-		
+
 		hull()
 		{
 			//fan center hole
@@ -1096,12 +1096,12 @@ module fanMount()
 			rotate([-45, 0, 0])
 			translate([0, 0, -.5])
 			cylinder(r=18, h=5);
-			
+
 			//cooler block opening
 			translate([coolerWall-coolerWidth-jHeadOffset(), fanPosY-12, -(jBodyCut2TipZ()-xCarriagePlatform)+fanPosZ+coolerWall])
 			cube([2*coolerWidth-2*coolerWall, 1, coolerHeight-2*coolerWall]);
 		}
-		
+
 		//fan mounting holes
 		translate([-jHeadOffset(), fanPosY+fanDiagonal/2, fanDiagonal/2-(jBodyCut2TipZ()-xCarriagePlatform)+fanPosZ])
 		rotate([-45, 0, 0])
@@ -1110,38 +1110,38 @@ module fanMount()
 		translate([x*fanMountDist/2, y*fanMountDist/2, -.5])
 		{
 			cylinder(r=1.6, h=5);
-			
+
 			translate([x*3.5, 0, 0])
 			cube([10, 3, 2], center=true);
 		}
-		
+
 		//coolerMountBracket
 		translate([-J_X(), coolerMountOffset, xCarriagePlatform-(xCarriageZ+xCarriageLift)])
 		{
 			translate([-coolerMountDist, 0, -5])
 			{
 				cylinder(r=1.6, h=6);
-				
+
 				translate([-5, 0, 1.6])
 				cube([10, 3.2, 3.2], center=true);
-				
+
 			}
-			
+
 			translate([coolerMountDist, 0, -5])
 			{
 				cylinder(r=1.6, h=6);
-				
+
 				translate([5, 0, 1.6])
 				cube([10, 3.2, 3.2], center=true);
-				
+
 			}
 		}
 	}
-	
+
 	translate([-J_X(), 0, 0])
 	{
 		airDeflector();
-		
+
 		mirror([1, 0, 0])
 		airDeflector();
 	}
@@ -1159,7 +1159,7 @@ module cableGuide()
 			cylinder(h=guideBracketH, r=guideThickness);
 			translate([motorMountDist, 0, 0])
 			cylinder(h=guideBracketH, r=guideThickness);
-			
+
 			difference(){
 				union(){
 					//cable guide towers
@@ -1169,20 +1169,20 @@ module cableGuide()
 						translate([0, 0, guideHeight])
 						sphere(r=guideThickness);
 					}
-					
+
 					//cable guide bridge
 					translate([guideBridgeOffset, guideWidth, guideHeight])
 					difference(){
 						rotate([90, 0, 0])
 						cylinder(h=guideWidth, r=guideThickness);
-						
+
 						translate([-guideThickness, -guideWidth-1, -guideThickness-1])
 						cube([2*guideThickness, guideWidth+2, guideThickness+1]);
 					}
 				}
 			}
 		}
-		
+
 		//motor mount holes
 		translate([0, 0, -1]){
 			cylinder(h=guideBracketH+2, r=motorMount/2);
@@ -1190,7 +1190,7 @@ module cableGuide()
 			cylinder(h=guideBracketH+2, r=motorMount/2);
 		}
 	}
-	
+
 }
 
 
@@ -1204,20 +1204,20 @@ module zEndstopMount()
 			//motor corner bracket
 			translate([-zEndstopWall, -zEndstopWall, -uSwitchThickness])
 			cube([motorWidth/2+zEndstopWall, motorWidth/2+zEndstopWall, uSwitchThickness+zEndstopWall]);
-			
+
 			// angled surfaces
 			hull()
 			{
 				translate([-zEndstopWall, -zEndstopWall, -uSwitchThickness])
 				cube([motorWidth/2+zEndstopWall, (motorWidth/2-motorCutoutD/2-0.5)+zEndstopWall, uSwitchThickness+zEndstopWall]);
-				
+
 				translate([-zEndstopWall, -zEndstopWall, -uSwitchThickness])
 				cube([motorWidth/2+zEndstopWall+zEndstopPosX, zEndstopWall, uSwitchThickness+zEndstopWall]);
-				
+
 				translate([-zEndstopWall, -zEndstopWall-uSwitchThickness, 0])
 				cube([zEndstopWall+motorWidth/2-uSwitchLength/2+zEndstopPosX+uSwitchLength, zEndstopWall, zEndstopWall]);
 			}
-			
+
 			//stiffener
 			translate([motorWidth/2-zEndstopWall/2, -zEndstopWall-uSwitchThickness, 0])
 			hull()
@@ -1225,11 +1225,11 @@ module zEndstopMount()
 				cube([zEndstopWall, zEndstopWall+uSwitchThickness+(motorWidth/2-motorCutoutD/2)/2, zEndstopWall]);
 				cube([zEndstopWall, zEndstopWall, zEndstopWall+uSwitchThickness+(motorWidth/2-motorCutoutD/2)/2]);
 			}
-			
+
 			//endstop plate
 			translate([motorWidth/2-uSwitchLength/2+zEndstopPosX, -zEndstopWall-uSwitchThickness, 0])
 			cube([uSwitchLength, zEndstopWall, uSwitchDepth/2+zEndstopPosZ-zEndstopWall]);
-			
+
 			translate([motorWidth/2-uSwitchLength/2+zEndstopPosX, -zEndstopWall-uSwitchThickness, 0])
 			translate([0, zEndstopWall, uSwitchDepth/2+zEndstopPosZ-zEndstopWall])
 			hull()
@@ -1237,28 +1237,28 @@ module zEndstopMount()
 				translate([uSwitchDepth/2, 0, 0])
 				rotate([90, 0, 0])
 				cylinder(r=uSwitchDepth/2, h=zEndstopWall);
-				
+
 				translate([uSwitchLength-uSwitchDepth/2, 0, 0])
 				rotate([90, 0, 0])
 				cylinder(r=uSwitchDepth/2, h=zEndstopWall);
 			}
 		}
-		
+
 		//corner cut-away
 		translate([-zEndstopWall, -zEndstopWall, 0])
 		rotate([0, 0, 45])
 		translate([-motorWidth, -motorWidth/2, -motorWidth/2])
 		cube([motorWidth, motorWidth, motorWidth]);
-		
+
 		//microswitch mounting holes:
 		translate([motorWidth/2+uSwitchLength/2+zEndstopPosX, -uSwitchThickness, uSwitchDepth+zEndstopPosZ])
 		rotate([270, 90, 0])
 		uSwitch(1);
-		
+
 		//stepper motor cut:
 		translate([motorWidth/2, motorWidth/2, motorCutoutH])
 		motor(0);
-		
+
 		//stepper motor cut:
 		translate([motorWidth/2, motorWidth/2, motorCutoutH])
 		cylinder(h=2*zEndstopWall, r=motorCutoutD/2+.5, center=true);
@@ -1311,7 +1311,7 @@ module render(n)
 		if (renderPart == 4)
 		{
 			rotate([0, 0, 0])
-			beltMount(1);		
+			beltMount(1);
 		} else {
 			color("Orange")
 			translate([0, xCarriageMountY+xBeltWall, 0])
@@ -1361,7 +1361,7 @@ module render(n)
 	{
 		if (renderPart == 8)
 		{
-			cableGuide();		
+			cableGuide();
 		} else {
 			color("GreenYellow")
 			translate([-renderPartDistance-xMotorDisplaceX+motorMountDist/2, yBody/2+xMotorDisplaceY-motorMountDist/2, zBody/2])
@@ -1374,7 +1374,7 @@ module render(n)
 		if (renderPart == 9)
 		{
 			rotate([90, 0, 0])
-			zEndstopMount();		
+			zEndstopMount();
 		} else {
 			color("SeaGreen")
 			translate([-(zRodDist+renderPartDistance-(xBody/2+zRodOffset))-motorWidth/2, -motorWidth/2, motorHeight-motorCutoutH-zPos])
@@ -1390,15 +1390,15 @@ module render(n)
 translate([jHeadOffset(), 0, 44.6-xCarriagePlatform])
 if (renderPart == 0)
 {
-	
+
 	for (pn = [1 : 9])
 	render(pn);
-	
+
 	vitamins();
 
 } else {
 	if (renderPart == -1) vitamins();
-	
+
 	render(renderPart);
 }
 

@@ -24,12 +24,12 @@ function encoderZ() = encZ+rodLen+pinH-pinOff;
 module encoderHull()
 {
 	cylinder(r=rodDia/2, h=rodLen+1, center=false);
-	
+
 	translate([0, 0, -tipLen])
 	difference()
 	{
 		cylinder(r=tipDia/2, h=tipLen+1, center=false);
-		
+
 		rotate([0, 0, -70])
 		translate([tipDia/2-tipCut, tipDia, -1])
 		rotate([0, 0, 180])
@@ -38,7 +38,7 @@ module encoderHull()
 
 	translate([0, 0, rodLen+encZ/2-0.01])
 	cube([encX, encY, encZ+0.1], center = true);
-	
+
 	for (iy=[-1, 1])
 	{
 		for (ix=[-1, 0, 1])
@@ -47,7 +47,7 @@ module encoderHull()
 			cylinder(r=pinD/2, h=pinH, center=false);
 		}
 	}
-	
+
 	for (ix=[-1, 1])
 	{
 		translate([ix*encX/2, 0, pinZ])

@@ -41,13 +41,13 @@ plugsz		= 20;
 	//outline
 	translate([-5*grid-9.1*grid-plugsxyadd, -5*grid-plugsxyadd, 0])
 	cube([10*grid*xpins+18.2*grid+2*plugsxyadd, 10*grid*ypins+2*plugsxyadd, plugsz]);
-	
+
 	translate([(xpins-1)*5*grid, -5*grid, plugsz/2])
 	cube([4+2*plugsxyadd, 2+2*plugsxyadd, plugsz], center=true);
 
 	translate([(xpins-1)*5*grid, -5*grid, plugsz/2+7])
 	cube([10*grid*xpins+2*plugsxyadd, 2+2*plugsxyadd, plugsz-14], center=true);
-	
+
 	//pins
 	for(ix=[0:1:xpins-1])
 	for(iy=[0:1:ypins-1])
@@ -65,16 +65,16 @@ module panelHull()
 		{
 			translate([0, 0, boxZ/2])
 			cube([lcdX()+2*wall, lcdY()+2*wall, boxZ], center=true);
-			
+
 			translate([lcdX()/2+buttonDist, 0, boxZ/2])
 			cylinder(r=buttonDia, h=boxZ, center=true);
 		}
-		
+
 		translate([0, 0, -0.01])
 		union()
 		{
 			lcdHull();
-			
+
 			//encoder and wire trays
 			translate([lcdX()/2+buttonDist, 0, 0])
 			{
@@ -86,23 +86,23 @@ module panelHull()
 					cube([buttonDist+10, wireTray, lcdRearZ()+cutOffset], center=true);
 				}
 			}
-			
+
 			//old ext. wire hole
 //			translate([-lcdX()/2-wall-1, -wireWidth/2, lcdZ()-wireHeight])
 //			cube([10+wall, wireWidth, wireHeight]);
-			
+
 			//IDC pin header
 			translate([10, -lcdY()/2+7, 4])
 			rotate([90, 0, 0])
 			IDC(7, 2);
-			
+
 			//wire duct
 			translate([39, -lcdY()/2+6, 4])
 			cube([15, 5, 10]);
 			translate([52, -lcdY()/2+6, 4])
 			cube([5, 35, 10]);
 		}
-		
+
 		lcdLowerNuts(boxZ+0.01);
 	}
 }
@@ -112,7 +112,7 @@ module front()
 	difference()
 	{
 		panelHull();
-		
+
 		//cut away the rear
 		translate([0, 0, boxZ/2+boxCutZ])
 		cube([200, 200, boxZ], center=true);
@@ -126,7 +126,7 @@ module rear()
 	difference()
 	{
 		panelHull();
-		
+
 		//cut away the front
 		translate([0, 0, boxCutZ-boxZ/2])
 		cube([200, 200, boxZ], center=true);
@@ -136,7 +136,7 @@ module rear()
 module explodedView()
 {
 	rear();
-	
+
 %	translate([0, 0, 30])
 	rotate([180, 0, 0])
 	lcdPanel();
