@@ -259,13 +259,15 @@ module goKiss()
 		nema();
 */		
 		nema();
-		for (i = [filamentDiameter, filamentDiameter])					//or use: 	for (i = filamentDiameter) or [1.75, 3.00])
-			assign (filamentDiameter = i, filamentRadius = i/2)
-			assign (filamentOffset = hobbedRadiusIn+filamentRadius, bearingOffset = hobbedRadiusIn+filamentDiameter+bearingRadius)
-			{
-				kiss(filamentDiameter, filamentOffset, bearingOffset);
-				//echo("Filament diameter [mm], offset [mm]", filamentDiameter + filamentDeformation, kissOffset());
-			}
+		for (i = [filamentDiameter, filamentDiameter]) {					//or use: 	for (i = filamentDiameter) or [1.75, 3.00])
+			diameter = i;
+			radius = i/2;
+			fOffset = hobbedRadiusIn+radius;
+			bOffset = hobbedRadiusIn+diameter+bearingRadius;
+
+			kiss(diameter, fOffset, bOffset);
+			//echo("Filament diameter [mm], offset [mm]", diameter + filamentDeformation, kissOffset());
+		}
 	}
 	echo();
 }

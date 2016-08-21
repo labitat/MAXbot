@@ -293,7 +293,7 @@ module pboard()
 
 
 // RENDER
-module case()
+module case(showpcb=false)
 {
 	//uncomment to insert and view split-plane:
 	//%translate([casex/2, casey/2, splitz]) cube([casex+1, casey+1, 0.01], center=true);
@@ -535,7 +535,7 @@ module casebottom()
 	}
 }
 
-if (rendertype == 0) assign(showpcb=true) case();
+if (rendertype == 0) case(showpcb=true);
 if (rendertype == 1) casebottom();
 if (rendertype == 2) casetop();
-if (rendertype == 3) assign(showpcb=true) case();
+if (rendertype == 3) case(showpcb=true);
