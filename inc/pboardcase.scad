@@ -59,7 +59,7 @@ module pin(pinwidth, pinlength)
 }
 
 //Molek KK type header
-module molex(pins)
+module molex(pins,showpcb=false)
 {
 	//outline
 	translate([-6*grid-plugsxyadd, -10*grid-plugsxyadd, 0])
@@ -85,7 +85,7 @@ module molex(pins)
 }
 
 //IDC pin header
-module IDC(xpins, ypins)
+module IDC(xpins, ypins,showpcb=false)
 {
 	//outline
 	translate([-5*grid-9.1*grid-plugsxyadd, -5*grid-plugsxyadd, 0])
@@ -113,7 +113,7 @@ module IDC(xpins, ypins)
 }
 
 //Berg/Dupont pin header
-module dupont(xpins, ypins)
+module dupont(xpins, ypins,showpcb=false)
 {
 	//outline
 	translate([-5*grid-plugsxyadd, -5*grid-plugsxyadd, 0])
@@ -135,7 +135,7 @@ module dupont(xpins, ypins)
 }
 
 //P4 ATX 12 volt header
-module atxpower()
+module atxpower(showpcb=false)
 {
 	//main box
 	translate([-plugsxyadd, -plugsxyadd, 0])
@@ -158,7 +158,7 @@ module atxpower()
 }
 
 //Micro USB female slot
-module microusb()
+module microusb(showpcb=false)
 {
 	plugx	= 32*grid;
 	plugy	= 12*grid;
@@ -182,7 +182,7 @@ module microusb()
 }
 
 //MicroSD slot
-module microsd()
+module microsd(showpcb=false)
 {
 	cardz	= 1;
 	xyadd	= 1*grid;	//add to hole dimensions
@@ -293,7 +293,7 @@ module pboard()
 
 
 // RENDER
-module case(showpcb=false)
+module case(rendertype,showpcb=false)
 {
 	//uncomment to insert and view split-plane:
 	//%translate([casex/2, casey/2, splitz]) cube([casex+1, casey+1, 0.01], center=true);
@@ -332,42 +332,42 @@ module case(showpcb=false)
 						//Micro-USB
 						translate([49*grid, -5*grid, 0])
 						rotate([0, 0, 180])
-						microusb();
+						microusb(showpcb);
 
 						//X-stop
 						translate([95*grid, 13*grid, 0])
 						rotate([0, 0, 180])
-						molex(3);
+						molex(3,showpcb);
 
 						//Y-stop
 						translate([127*grid, 13*grid, 0])
 						rotate([0, 0, 180])
-						molex(3);
+						molex(3,showpcb);
 
 						//Z-stop
 						translate([159*grid, 13*grid, 0])
 						rotate([0, 0, 180])
-						molex(3);
+						molex(3,showpcb);
 
 						//E-stop
 						translate([191*grid, 13*grid, 0])
 						rotate([0, 0, 180])
-						molex(3);
+						molex(3,showpcb);
 
 						//EXP1
 						translate([264*grid, 19*grid, 0])
 						rotate([0, 0, 180])
-						dupont(7,2);
+						dupont(7,2,showpcb);
 
 						//EXP2
 						translate([302*grid, 129*grid, 0])
 						rotate([0, 0, 180])
-						IDC(7,2);
+						IDC(7,2,showpcb);
 
 						//HWB jumper
 						translate([212.4*grid, 123.2*grid, 0])
 						rotate([0, 0, 135])
-						dupont(2,1);
+						dupont(2,1,showpcb);
 
 						//cutout for X1 (next to CPU)
 						translate([215*grid, 50*grid, 0])
@@ -381,12 +381,12 @@ module case(showpcb=false)
 						//ICSP
 						translate([301*grid, 19*grid, 0])
 						rotate([0, 0, 180])
-						IDC(3,2);
+						IDC(3,2,showpcb);
 
 						//MicroSD slot hole
 						translate([340*grid, -1, 0])
 						rotate([0, 0, 180])
-						microsd();
+						microsd(showpcb);
 
 						//Reset pinhole
 						translate([380*grid, 48*grid, 0])
@@ -399,17 +399,17 @@ module case(showpcb=false)
 						//Bed sensor Molex KK type
 						translate([384*grid, 88*grid, 0])
 						rotate([0, 0, 270])
-						molex(2);						//dupont()2,1);
+						molex(2,showpcb);
 
 						//Tip sensor Molex KK type
 						translate([384*grid, 108*grid, 0])
 						rotate([0, 0, 270])
-						molex(2);						//dupont()2,1);
+						molex(2,showpcb);
 
 						//Fan power berg type
 						translate([384*grid, 156*grid, 0])
 						rotate([0, 0, 270])
-						molex(2);						//dupont()2,1);
+						molex(2,showpcb);
 
 						//E, Z, Y & X-motor
 						translate([70*grid, 227*grid, 0])
@@ -417,7 +417,7 @@ module case(showpcb=false)
 						{
 							translate([i*80*grid, 0, 0])
 							{
-								molex(4);
+								molex(4,showpcb);
 
 								//current-adjust hole
 							//	translate([51*grid, -38*grid, 0])
@@ -432,17 +432,17 @@ module case(showpcb=false)
 						//P4 ATX power
 						translate([0, 197*grid, 0])
 						rotate([0, 0, -90])
-						atxpower();
+						atxpower(showpcb);
 
 						//Tip power
 						translate([12*grid, 82*grid, 0])
 						rotate([0, 0, 90])
-						molex(4);
+						molex(4,showpcb);
 
 						//Bed power
 						translate([12*grid, 39.5*grid, 0])
 						rotate([0, 0, 90])
-						molex(4);
+						molex(4,showpcb);
 
 						//Fan
 						translate([36.5, 32, 0])
@@ -511,31 +511,31 @@ module case(showpcb=false)
 	}
 }
 
-module casetop()
+module casetop(showpcb=false)
 {
 	rotate([0, 180, 180])
 	translate([0, -casey, -casez])
 	difference()
 	{
-		case();
+		case(2,showpcb);
 
 		translate([-1, -1, -1])
 		cube([casex+2, casey+2, splitz+1]);
 	}
 }
 
-module casebottom()
+module casebottom(showpcb=false)
 {
 	difference()
 	{
-		case();
+		case(1,showpcb);
 
 		translate([-1, -1, splitz])
 		cube([casex+2, casey+2, casez-splitz+1]);
 	}
 }
 
-if (rendertype == 0) case(showpcb=true);
-if (rendertype == 1) casebottom();
-if (rendertype == 2) casetop();
-if (rendertype == 3) case(showpcb=true);
+if (rendertype == 0) case(0,showpcb=showpcb);
+if (rendertype == 1) casebottom(showpcb=showpcb);
+if (rendertype == 2) casetop(showpcb=showpcb);
+if (rendertype == 3) case(3,showpcb=showpcb);
