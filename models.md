@@ -45,7 +45,32 @@
 
 [OpenSCAD file](./src/9_z_endstop_holder.scad) | [STL file](./distribution/9_z_endstop_holder.stl)
 
+## EasyPanel-front (EasyPanel-front.scad)
+![EasyPanel-front (EasyPanel-front.scad)](./images/EasyPanel-front.png "EasyPanel-front")
+
+[OpenSCAD file](./src/EasyPanel-front.scad) | [STL file](./distribution/EasyPanel-front.stl)
+
+## EasyPanel-rear (EasyPanel-rear.scad)
+![EasyPanel-rear (EasyPanel-rear.scad)](./images/EasyPanel-rear.png "EasyPanel-rear")
+
+[OpenSCAD file](./src/EasyPanel-rear.scad) | [STL file](./distribution/EasyPanel-rear.stl)
+
 ## Bed cutout (bed.scad)
 ![Bed cutout (bed.scad)](./images/bed.png "Bed cutout")
 
 [OpenSCAD file](./src/bed.scad) | [STL file](./distribution/bed.stl)
+
+## pb-Y-BarEnds-mod (pb-Y-BarEnds-mod.scad)
+![pb-Y-BarEnds-mod (pb-Y-BarEnds-mod.scad)](./images/pb-Y-BarEnds-mod.png "pb-Y-BarEnds-mod")
+
+[OpenSCAD file](./src/pb-Y-BarEnds-mod.scad) | [STL file](./distribution/pb-Y-BarEnds-mod.stl)
+
+## pboardcase-base (pboardcase-base.scad)
+![pboardcase-base (pboardcase-base.scad)](./images/pboardcase-base.png "pboardcase-base")
+
+[OpenSCAD file](./src/pboardcase-base.scad) | [STL file](./distribution/pboardcase-base.stl)
+
+## pboardcase-lid (pboardcase-lid.scad)
+![pboardcase-lid (pboardcase-lid.scad)](./images/pboardcase-lid.png "pboardcase-lid")
+
+[OpenSCAD file](./src/pboardcase-lid.scad) | [STL file](./distribution/pboardcase-lid.stl)
