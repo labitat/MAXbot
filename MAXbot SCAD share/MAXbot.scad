@@ -6,7 +6,7 @@ kharar@gmail.com  |  tinyurl.com/maxbot
 */
 
 use<extruders.scad>;
-use<bowden.scad>
+// use<bowden.scad>
 
 /***********************************************************\
 RENDERPART selector:                                        *
