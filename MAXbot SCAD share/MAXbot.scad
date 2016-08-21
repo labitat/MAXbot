@@ -1383,23 +1383,23 @@ module render(n)
 	}
 }
 
-
-
-
-// MAIN
-translate([jHeadOffset(), 0, 44.6-xCarriagePlatform])
-if (renderPart == 0)
+module maxbot()
 {
+	// MAIN
+	translate([jHeadOffset(), 0, 44.6-xCarriagePlatform])
+	if (renderPart == 0)
+	{
 
-	for (pn = [1 : 9])
-	render(pn);
+		for (pn = [1 : 9])
+		render(pn);
 
-	vitamins();
+		vitamins();
 
-} else {
-	if (renderPart == -1) vitamins();
+	} else {
+		if (renderPart == -1) vitamins();
 
-	render(renderPart);
+		render(renderPart);
+	}
 }
 
-cube([0, 0, 0]);
+maxbot();
