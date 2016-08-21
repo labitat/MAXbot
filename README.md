@@ -1,8 +1,9 @@
 # Labitat MAXbot
 
-This is a direct image of what is in https://www.dropbox.com/sh/lfgfccm9qzkwr88/H0Lw2Yl6Ez . See https://labitat.dk/wiki/MAXbot for instructions.
+See https://labitat.dk/wiki/MAXbot for instructions.
 
 ## Howto
+
 Homepage: http://labitat.dk/wiki/MAXbot
 If you are having trouble compiling or rendering on Linux please make sure you are using OpenSCAD version 2013.06 (download and compile the source yourself), everything else is futile.
 
@@ -21,3 +22,21 @@ Remote control panel:
 Main file:  EasyPanel.scad
 included:   Lcd4x20.scad
 included:   ClickEncoder.scad
+
+## Parts
+
+Wersybot - a derivate of The Printrbot
+http://www.thingiverse.com/thing:37009
+ws-base.stl
+
+printrbot Y-bar-end with Y-end-stop trigger
+http://www.thingiverse.com/thing:22343
+pb_y_bar_end.stl
+
+Printrbot Original
+https://www.youmagine.com/designs/printrbot-original
+Pb Y Bearing Guide
+Pb Belt Clip X2
+
+PrintrBoard compact cooling enclosure
+http://www.thingiverse.com/thing:132740
