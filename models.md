@@ -60,10 +60,10 @@
 
 [OpenSCAD file](./src/bed.scad) | [STL file](./distribution/bed.stl)
 
-## pb-Y-BarEnds-mod (pb-Y-BarEnds-mod.scad)
-![pb-Y-BarEnds-mod (pb-Y-BarEnds-mod.scad)](./images/pb-Y-BarEnds-mod.png "pb-Y-BarEnds-mod")
+## pb_y_bar_end (pb_y_bar_end.scad)
+![pb_y_bar_end (pb_y_bar_end.scad)](./images/pb_y_bar_end.png "pb_y_bar_end")
 
-[OpenSCAD file](./src/pb-Y-BarEnds-mod.scad) | [STL file](./distribution/pb-Y-BarEnds-mod.stl)
+[OpenSCAD file](./src/pb_y_bar_end.scad) | [STL file](./distribution/pb_y_bar_end.stl)
 
 ## pboardcase-base (pboardcase-base.scad)
 ![pboardcase-base (pboardcase-base.scad)](./images/pboardcase-base.png "pboardcase-base")
