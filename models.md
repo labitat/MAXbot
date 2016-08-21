@@ -30,11 +30,6 @@
 
 [OpenSCAD file](./src/6_extruder.scad) | [STL file](./distribution/6_extruder.stl)
 
-## 7_nozzle_cooler (7_nozzle_cooler.scad)
-![7_nozzle_cooler (7_nozzle_cooler.scad)](./images/7_nozzle_cooler.png "7_nozzle_cooler")
-
-[OpenSCAD file](./src/7_nozzle_cooler.scad) | [STL file](./distribution/7_nozzle_cooler.stl)
-
 ## 8_x_cable_guide (8_x_cable_guide.scad)
 ![8_x_cable_guide (8_x_cable_guide.scad)](./images/8_x_cable_guide.png "8_x_cable_guide")
 
