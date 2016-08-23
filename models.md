@@ -50,6 +50,11 @@
 
 [OpenSCAD file](./src/EasyPanel-rear.scad) | [STL file](./distribution/EasyPanel-rear.stl)
 
+## base (base.scad)
+![base (base.scad)](./images/base.png "base")
+
+[OpenSCAD file](./src/base.scad) | [STL file](./distribution/base.stl)
+
 ## Bed cutout (bed.scad)
 ![Bed cutout (bed.scad)](./images/bed.png "Bed cutout")
 
