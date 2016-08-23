@@ -87,7 +87,8 @@ module base()
             }
             translate([0,0,-(height-7)/2]) base_platform(size=[width,19.8,7]);
         }
-        translate([0,0,-13.5]) cylinder(d=8.1, h=height, center=true, $fn=24);
+        translate([0,0,-((height-40)/2)-1]) cylinder(d=8.1, h=40, center=true, $fn=24);
+        translate([0,0,-((height-5)/2)-1+40]) cylinder(d1=8.1, d2=0, h=5, center=true, $fn=24);
         for(i=[-1,1]) translate([i*((width/2)-19.3),0]) base_bearing_cutout(height, width);
     }
 }
