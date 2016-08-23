@@ -1,3 +1,5 @@
+// Based on the ws-base from Wersybot (http://www.thingiverse.com/thing:37009)
+
 include <../config.scad>;
 
 module base_platform(size=[0,0,0])
