@@ -15,6 +15,8 @@ This is a list of the parts, that are used from different projects. These files 
     - Pb Belt Clip X2
 
 ## License
+```text
 All rights reserved
 This is an open source project, free for non-profit use.
 For other uses contact Martin Axelsen on kharar@gmail.com
+```
