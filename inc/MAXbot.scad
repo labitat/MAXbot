@@ -7,7 +7,7 @@ kharar@gmail.com  |  tinyurl.com/maxbot
 
 include <../config.scad>;
 use <extruders.scad>;
-// use<bowden.scad>
+use <Bowden.scad>
 
 $fn=50;
 
