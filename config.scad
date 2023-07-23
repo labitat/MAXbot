@@ -17,10 +17,10 @@ coolerAddon			= true; 		// specifies if part 4 includes the cooler mounting (exp
 bearingHeight		= 8;			// belt bearing height (608ZZ=8)
 bearingDiameter		= 22;			// belt bearing diameter (608ZZ=22)
 
-xBeltToothSize		= 2.5;			// belt tooth interval (T2.5=2.5 | T5=5)
-xBeltToothDepth		= 0.7;			// belt tooth thickness (T2.5=0.7 | T5=1)
-xBeltDepth			= 0.9;			// belt additional thickness on smooth side of reinforcement (T2.5=0.9 | T5=0.5)
-xBeltSide			= 6;			// belt width (T2.5=6 | T5=5)
+xBeltToothSize		= 2.0;			// belt tooth interval (T2.5=2.5 | T5=5 | GT2=2)
+xBeltToothDepth		= 0.75;			// belt tooth thickness (T2.5=0.7 | T5=1 | GT2=0.75)
+xBeltDepth			= 0.376;			// belt additional thickness on smooth side of reinforcement (T2.5=0.9 | T5=0.5 | GT2=0.376)
+xBeltSide			= 6;			// belt width (T2.5=6 | T5=5 | GT2=6)
 xBeltIdlerRodHole	= 8;			// belt bearing rod hole diameter (608ZZ -> M8=8)
 xBeltIdlerRodWall	= 7;			// belt bearing rod hole wall thickness
 
